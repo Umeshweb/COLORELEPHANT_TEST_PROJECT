@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="test.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script><!-- load angular -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	
+	
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+	
+</head>
+<body ng-app="app">
+    <div ng-controller="mainController">
+		<div>
+		 <nav class="navbar navbar-default center" role="navigation">
+			 <div class="navbar-inner">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a ui-sref="main" >Welcome stranger</a></li>
+		        <li class=""><a ui-sref="login" >You are admin!!</a></li>
+		      </ul>
+		     </div>
+		 </nav>
+		</div>
+		
+		<div ui-view class="mainDiv">
+			
+		</div>
+	</div>
+</body>
+</html>

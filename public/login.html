@@ -1,0 +1,145 @@
+<div ng-controller="loginController">
+	<alert ng-show='alertFlag' type="danger" close='removeAlert()'>{{alertmessage}}</alert>
+	<div ng-show="!loginFlag && !registerFlag">
+		<div class="text-center" style="padding:50px 0">
+		<div class="logo">Admin login</div>
+		<!-- Main Form -->
+		<div class="login-form-1">
+			<form id="login-form" class="text-left">
+				<div class="login-form-main-message"></div>
+				<div class="main-login-form">
+					<div class="login-group">
+						<div class="form-group">
+							<label for="lg_username" class="sr-only">Username</label>
+							<input ng-model="username" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username" required="">
+						</div>
+						<div class="form-group">
+							<label for="lg_password" class="sr-only">Password</label>
+							<input ng-model="password" type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password" required="">
+						</div>
+					</div>
+					<div>
+							<button ng-click="loginForm()" type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+							<button ng-click="register()" type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+							<!-- <button ng-click="resend()" type="submit" class="btn btn-primary btn-lg btn-block">Resend</button> -->
+					</div>
+				</div>
+			</form>
+			</div>
+		<!-- end:Main Form -->
+		</div>
+	</div>
+	<div ng-show="registerFlag == true && !loginFlag">
+			<div class="text-center" style="padding:50px 0">
+			<div class="logo">Admin login</div>
+			<!-- Main Form -->
+			<div class="login-form-1">
+				<form id="login-form" class="text-left">
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="lg_password" class="sr-only">First Name</label>
+								<input ng-model="firstName" type="text" class="form-control" id="lg_password" name="lg_password" placeholder="First Name" required="">
+							</div>
+							<div class="form-group">
+								<label for="lg_password" class="sr-only">Last Name</label>
+								<input ng-model="lastName" type="text" class="form-control" id="lg_password" name="lg_password" placeholder="Last name" required="">
+							</div>
+							<div class="form-group">
+								<label for="lg_username" class="sr-only">Username</label>
+								<input ng-model="username" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username" required="">
+							</div>
+							<div class="form-group">
+								<label for="lg_password" class="sr-only">Password</label>
+								<input ng-model="password" type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password" required="">
+							</div>
+						</div>
+						<div>
+								<span ng-click="backTologin()" class="btn btn-primary btn-lg  glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<button ng-click="FinalRegister()" type="submit" class="btn btn-primary btn-lg">Registeere</button>
+						</div>
+					</div>
+				</form>
+				</div>
+			<!-- end:Main Form -->
+			</div>
+	</div>
+	<div ng-if="loginFlag == true">
+		<div>
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <ul class="nav navbar-nav">
+			      <li><a href="#" ng-click="tab = 0">Users Data</a></li>
+			      <li><a href="#"ng-click="tab = 1">My Profile</a></li>
+			    </ul>
+			  </div>
+			</nav>
+		</div>
+		
+		<div>
+			<label class="">Search Record By Email ID</label>
+			<input ng-model="filter.key" style="width:20%" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username" required="">
+		</div>
+		<div ng-if="tab == 0">
+			<table class="table">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>WebAddress</th>
+				<th>cover</th>
+				<th>Like working?</th>
+				<th>Rating</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="x in dataArray  | filter: { email : filter.key}">
+				<td>{{ x.name }}</td>
+				<td>{{ x.email }}</td>
+				<td>{{ x.webaddress }}</td>
+				<td>{{ x.cover }}</td>
+				<td>{{ x.workingFlag }}</td>
+				<td><star-rating-comp label-text="'My text!'"></star-rating-comp></td>
+			</tr>
+			</tbody>
+		</table>
+		</div>
+		<div ng-if="tab == 1">
+			<div class=" col-md-9 col-lg-9 hidden-sm">
+                 <table class="table table-user-information">
+                     <tbody>
+                     <tr>
+                         <td>First Name:</td>
+                         <td>{{loginedUser.fName}}</td>
+                     </tr>
+                     <tr>
+                         <td>Last Name:</td>
+                         <td>{{loginedUser.lName}}</td>
+                     </tr>
+                     <tr>
+                         <td>UserName</td>
+                         <td>{{loginedUser.email}}</td>
+                     </tr>
+                     <tr>
+                         <td>IP Address</td>
+                         <td>{{loginedUser.ip}}</td>
+                     </tr>
+                     <tr>
+                         <td>Location</td>
+                         <td>{{loginedUser.location}}</td>
+                     </tr>
+                     <tr>
+                         <td>TimeStamp</td>
+                         <td>{{loginedUser.timeStamp}}</td>
+                     </tr>
+                     </tbody>
+                 </table>
+             </div>
+		</div>
+		
+	</div>
+</div>
+
+
+
